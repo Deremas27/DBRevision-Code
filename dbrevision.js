@@ -1,12 +1,16 @@
 // Importing necessary third-party modules
 const express = require("express");
 const mysql = require("mysql2");
+const cors = require("cors");
 
 /* Initialize the Express application. The 'app' variable will be used to configure and run the web server. */
 const app = express();
 
 // Middleware to parse incoming JSON data from requests
 app.use(express.json());
+
+// Enable CORS for all origins, allowing requests from any domain
+app.use(cors());
 
 // Middleware to parse incoming URL-encoded data from requests.
 // Setting 'extended: true' allows parsing(or getting) nested objects and arrays in the request body (req.body).
@@ -123,7 +127,6 @@ app.get("/create-table", (req, res) => {
   res.end("Tables Created");
   console.log("Tables Created");
 });
-
 
 // Route: /add-product
 // Adds product, product description, pricing, user details, and orders data(information) to the database tables
